@@ -48,7 +48,7 @@
         #1b5e20 6%,
         #1b5e20 12%
       );
-      aspect-ratio: 2 / 3; /* zachowanie proporcji boiska */
+      aspect-ratio: 2 / 3; /* proporcje boiska */
       max-width: 100%;
       margin: 0 auto;
     }
@@ -112,7 +112,7 @@
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     }
 
-    /* Ustawienie 4-4-2 - w procentach (skalują się automatycznie) */
+    /* Ustawienie 4-4-2 */
     .bramkarz { top: 90%; left: 50%; transform: translate(-50%, -50%); }
     .obronca1 { top: 70%; left: 20%; transform: translate(-50%, -50%); }
     .obronca2 { top: 70%; left: 80%; transform: translate(-50%, -50%); }
@@ -144,7 +144,7 @@
 
     footer{padding:16px 0;text-align:center;color:#666;font-size:14px}
 
-    /* --- Responsywność --- */
+    /* --- MENU MOBILNE --- */
     .menu-toggle {
       display:none;
       flex-direction:column;
@@ -160,6 +160,7 @@
       transition:0.3s;
     }
 
+    /* --- WERSJA MOBILNA --- */
     @media (max-width:900px){
       nav ul {
         display:none;
@@ -179,9 +180,55 @@
       .menu-toggle {
         display:flex;
       }
-      .hero h1{font-size:26px}
-      .card{padding:14px}
-      .container{padding:16px}
+
+      .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px !important;
+        margin: 0;
+      }
+
+      section {
+        padding: 20px 8px !important;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+        line-height: 1.2;
+      }
+      .hero p {
+        font-size: 15px;
+      }
+
+      #druzyna {
+        aspect-ratio: auto;
+        height: 80vh;
+        width: 100vw;
+        margin-left: calc(-1 * (100vw - 100%)/2);
+        border-radius: 0;
+      }
+      .player {
+        width: 15vw;
+        font-size: 3.5vw;
+      }
+
+      .gallery div {
+        font-size: 16px;
+      }
+      .card {
+        padding: 12px;
+        border-radius: 10px;
+      }
+
+      table th, table td {
+        font-size: 13px;
+        padding: 8px;
+      }
+
+      #kontakt .card {
+        display: flex !important;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
