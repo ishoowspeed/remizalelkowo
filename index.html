@@ -3,31 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Remiza Lelkowo - Strona oficjalna</title>
-  <meta name="description" content="Oficjalna strona klubu piłkarskiego Remiza Lelkowo" />
+  <title>Remiza Lelkowo - Skład 4-2-3-1</title>
+  <meta name="description" content="Remiza Lelkowo - formacja 4-2-3-1" />
   <style>
-    :root {
+    :root{
       --primary:#b70d0d;
       --accent:#0b0b0b;
-      --muted:#f3f3f3;
-      --card:#ffffff;
       --maxw:1100px;
       font-family: Inter, system-ui, sans-serif;
     }
     *{box-sizing:border-box}
-    body {
-      margin:0;
-      background:linear-gradient(180deg,#fff 0%, #f7f7f7 100%);
-      color:#111;
-    }
-    header {
-      background:var(--accent);
-      color:white;
-      padding:12px 16px;
-      position:sticky;
-      top:0;
-      z-index:50;
-    }
+    body{margin:0;background:linear-gradient(180deg,#fff 0%, #f7f7f7 100%);color:#111}
+    header{background:var(--accent);color:white;padding:12px 16px;position:sticky;top:0;z-index:50}
     .container{max-width:var(--maxw);margin:0 auto;padding:24px}
     .nav{display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap}
     .brand{display:flex;align-items:center;gap:12px}
@@ -36,127 +23,160 @@
     nav a{color:white;text-decoration:none;font-weight:600}
     .btn{background:var(--primary);color:white;padding:8px 12px;border-radius:8px;text-decoration:none}
 
-    .hero{padding:36px 0;text-align:center}
-    .hero h1{margin:0;font-size:34px}
-    .hero p{margin:12px 0 0;color:#222}
+    .hero{padding:28px 0;text-align:center}
+    .hero h1{margin:0;font-size:28px}
+    .hero p{margin:10px 0 0;color:#222}
 
-    section{padding:28px 0}
-    h2.section-title{margin:0 0 12px;font-size:22px;text-align:center}
+    section{padding:18px 0}
+    h2.section-title{margin:0 0 12px;font-size:20px;text-align:center}
 
-    .card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 6px 18px rgba(10,10,10,0.06);margin-bottom:12px}
+    .card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(10,10,10,0.06);margin-bottom:12px}
 
-    /* === BOISKO === */
+    /* ===== BOISKO (4-2-3-1) ===== */
+    /* wrapper to control responsive width */
+    .pitch-wrap{
+      max-width:960px;
+      margin:0 auto;
+      padding:12px;
+    }
+
     #druzyna {
       position:relative;
-      background:linear-gradient(180deg,#0f8f25 0%,#056b1f 100%);
-      border-radius:16px;
-      height:80vh;
-      max-width:700px;
-      margin:0 auto;
+      width:100%;
+      /* natural football pitch ratio (~2:3 width:height) */
+      aspect-ratio: 3 / 4;
+      min-height:420px;
+      border-radius:14px;
       overflow:hidden;
-      box-shadow:0 6px 20px rgba(0,0,0,0.3);
+      background: linear-gradient(180deg,#0f8f25 0%,#056b1f 100%);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.28);
     }
-    #druzyna::before {
+
+    /* outer white border inside pitch */
+    #druzyna::before{
       content:"";
       position:absolute;
-      inset:4%;
-      border:3px solid #fff;
-      border-radius:6px;
+      inset:3%;
+      border:4px solid rgba(255,255,255,0.95);
+      border-radius:10px;
+      pointer-events:none;
     }
-    #druzyna::after {
+
+    /* halfway line */
+    #druzyna::after{
       content:"";
       position:absolute;
       top:50%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      width:20%;
-      aspect-ratio:1/1;
-      border:3px solid #fff;
-      border-radius:50%;
+      left:3.5%;
+      width:93%;
+      height:2px;
+      background:#fff;
+      transform:translateY(-50%);
+      pointer-events:none;
+      opacity:0.95;
     }
+
+    /* center circle */
+    .center-circle{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width:18%;
+      aspect-ratio:1/1;
+      border-radius:50%;
+      border:3px solid #fff;
+      pointer-events:none;
+    }
+
+    /* small center spot */
+    .center-spot{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width:6px;height:6px;border-radius:50%;background:#fff;pointer-events:none;
+    }
+
+    /* player token base style */
     .player {
       position:absolute;
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background:white;
-      color:#111;
+      transform:translate(-50%,-50%);
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      font-weight:700;
+      background:#fff;
+      color:#111;
+      border-radius:50%;
+      box-shadow:0 6px 14px rgba(0,0,0,0.25);
+      border:3px solid rgba(0,0,0,0.06);
       text-align:center;
-      box-shadow:0 3px 8px rgba(0,0,0,0.3);
-      font-size:13px;
+      font-weight:700;
+      padding:6px;
+      min-width:64px;
+      min-height:64px;
     }
-    .player span {
-      font-size:10px;
-      color:#333;
+    .player .role {
+      display:block;
       font-weight:600;
-      margin-top:2px;
+      font-size:11px;
+      color:#444;
+      margin-top:6px;
+    }
+    /* make names wrap nicely */
+    .player .name { font-size:14px; line-height:1; }
+
+    /* ---------- positions (percentages) ---------- */
+    /* top: striker */
+    .pos-st { left:50%; top:8%; }
+    /* attacking mid trio: left, center, right */
+    .pos-lam { left:30%; top:26%; }   /* left attacking mid (Iskra) */
+    .pos-cam { left:50%; top:24%; }   /* center attacking mid (Ogień) */
+    .pos-ram { left:70%; top:26%; }   /* right attacking mid (Sygnał) */
+    /* two defensive mids: left, right (Alarm, Płomień) sitting slightly lower */
+    .pos-dm1 { left:40%; top:40%; }   /* Alarm */
+    .pos-dm2 { left:60%; top:40%; }   /* Płomień */
+    /* back four: LB, LCB, RCB, RB */
+    .pos-lb { left:14%; top:60%; }    /* Hydrant (LB) */
+    .pos-lcb { left:36%; top:62%; }   /* Strażak (LCB) */
+    .pos-rcb { left:64%; top:62%; }   /* Piana (RCB) */
+    .pos-rb { left:86%; top:60%; }    /* Zraszacz (RB) */
+    /* goalkeeper bottom center */
+    .pos-gk { left:50%; top:88%; }
+
+    /* responsive sizing of tokens */
+    @media (min-width:900px){
+      .player{ min-width:84px; min-height:84px; padding:10px; }
+      .player .name{ font-size:16px; }
+      .player .role{ font-size:12px; }
+    }
+    @media (max-width:899px){
+      /* on small screens make tokens slightly smaller and pitch narrower but centered */
+      .pitch-wrap{ padding:6px; }
+      #druzyna{ aspect-ratio: 3 / 4; min-height:360px; }
+      .player{ min-width:64px; min-height:64px; padding:6px; font-size:13px; }
+      .player .name{ font-size:13px;}
+      .player .role{ font-size:11px; }
+      /* ensure no horizontal scrollbar: pitch fits within viewport nicely */
+      .container{ padding-left:10px; padding-right:10px; }
     }
 
-    /* --- Pozycje zawodników (4-4-1-1) --- */
-    .gk {bottom:6%;left:50%;transform:translateX(-50%);}
-    .lb {bottom:22%;left:16%;}
-    .cb1 {bottom:22%;left:36%;}
-    .cb2 {bottom:22%;right:36%;}
-    .rb {bottom:22%;right:16%;}
-    .lm {bottom:42%;left:16%;}
-    .cm1 {bottom:42%;left:36%;}
-    .cm2 {bottom:42%;right:36%;}
-    .rm {bottom:42%;right:16%;}
-    .cam {bottom:60%;left:50%;transform:translateX(-50%);}
-    .st {top:8%;left:50%;transform:translateX(-50%);}
-
-    /* === GALERIA === */
+    /* other page styles (gallery, table etc) kept simple */
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid #eee;text-align:left;font-size:14px}
+    th{background:#fafafa}
     .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
-    .gallery div{height:120px;border-radius:8px;background:linear-gradient(135deg,#b70d0d,#ff4444);display:flex;align-items:center;justify-content:center;color:white;font-weight:bold}
-
+    .gallery div{height:120px;border-radius:8px;background:linear-gradient(135deg,#1b5e20,#2e7d32);display:flex;align-items:center;justify-content:center;color:white;font-weight:bold}
     footer{padding:16px 0;text-align:center;color:#666;font-size:14px}
 
-    /* --- Responsywność --- */
-    .menu-toggle {
-      display:none;
-      flex-direction:column;
-      justify-content:center;
-      gap:5px;
-      cursor:pointer;
-    }
-    .menu-toggle span {
-      width:25px;
-      height:3px;
-      background:white;
-      border-radius:2px;
-      transition:0.3s;
-    }
-
+    /* mobile nav */
+    .menu-toggle{display:none}
     @media (max-width:900px){
-      nav ul {
-        display:none;
-        flex-direction:column;
-        background:var(--accent);
-        width:100%;
-        padding:12px 0;
-        margin-top:8px;
-      }
-      nav ul.show {display:flex;}
-      nav a {padding:8px 16px;display:block;}
-      .menu-toggle {display:flex;}
-      .hero h1{font-size:26px}
-      .card{padding:14px}
-      .container{padding:16px}
-      #druzyna {
-        height:70vh;
-        width:94vw;
-        margin:0 auto;
-      }
-      .player {
-        width:56px;
-        height:56px;
-        font-size:11px;
-      }
+      nav ul{display:none;flex-direction:column;background:var(--accent);width:100%;padding:12px 0;margin-top:8px}
+      nav ul.show{display:flex}
+      .menu-toggle{display:flex;flex-direction:column;gap:5px;cursor:pointer}
+      .menu-toggle span{width:25px;height:3px;background:white;border-radius:2px}
     }
   </style>
 </head>
@@ -177,9 +197,7 @@
         </div>
       </div>
 
-      <div class="menu-toggle" id="menu-toggle">
-        <span></span><span></span><span></span>
-      </div>
+      <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
 
       <nav>
         <ul id="nav-links">
@@ -197,29 +215,77 @@
   <main class="container">
     <section id="home" class="hero">
       <h1>Witaj w Remizie Lelkowo</h1>
-      <p>Oficjalna strona klubu piłkarskiego — pasja, tradycja i sportowa rywalizacja.</p>
+      <p>Oficjalna strona klubu piłkarskiego — formacja 4-2-3-1</p>
     </section>
 
     <section id="o-klubie">
       <h2 class="section-title">O klubie</h2>
       <div class="card">
-        <p><strong>Remiza Lelkowo</strong> to lokalny klub piłkarski założony z myślą o promocji aktywności sportowej. Naszym celem jest rozwój młodzieży i wspólna pasja do futbolu.</p>
+        <p><strong>Remiza Lelkowo</strong> to lokalny klub piłkarski — przykład ustawienia taktycznego.</p>
       </div>
     </section>
 
-    <section id="druzyna">
-      <!-- Formacja 4-4-1-1 -->
-      <div class="player gk">Gaśnica<span>Bramkarz</span></div>
-      <div class="player lb">Hydrant<span>Obrona</span></div>
-      <div class="player cb1">Strażak<span>Obrona</span></div>
-      <div class="player cb2">Piana<span>Obrona</span></div>
-      <div class="player rb">Zraszacz<span>Obrona</span></div>
-      <div class="player lm">Iskra<span>Pomoc</span></div>
-      <div class="player cm1">Alarm<span>Pomoc</span></div>
-      <div class="player cm2">Płomień<span>Pomoc</span></div>
-      <div class="player rm">Sygnał<span>Pomoc</span></div>
-      <div class="player cam">Ogień<span>Ofens.</span></div>
-      <div class="player st">Łasica<span>Napastnik</span></div>
+    <section id="druzyna" class="pitch-wrap">
+      <div id="druzyna">
+        <!-- center markings -->
+        <div class="center-circle"></div>
+        <div class="center-spot"></div>
+
+        <!-- STRIKER -->
+        <div class="player pos-st">
+          <div class="name">Łasica</div>
+          <div class="role">Napastnik</div>
+        </div>
+
+        <!-- Attacking Mid Trio (L, C, R) -->
+        <div class="player pos-lam">
+          <div class="name">Iskra</div>
+          <div class="role">Pomoc</div>
+        </div>
+        <div class="player pos-cam">
+          <div class="name">Ogień</div>
+          <div class="role">Ofens.</div>
+        </div>
+        <div class="player pos-ram">
+          <div class="name">Sygnał</div>
+          <div class="role">Pomoc</div>
+        </div>
+
+        <!-- Defensive mids (2) -->
+        <div class="player pos-dm1">
+          <div class="name">Alarm</div>
+          <div class="role">Def. pomoc</div>
+        </div>
+        <div class="player pos-dm2">
+          <div class="name">Płomień</div>
+          <div class="role">Def. pomoc</div>
+        </div>
+
+        <!-- Back four -->
+        <div class="player pos-lb">
+          <div class="name">Hydrant</div>
+          <div class="role">Obrona</div>
+        </div>
+        <div class="player pos-lcb">
+          <div class="name">Strażak</div>
+          <div class="role">Obrona</div>
+        </div>
+        <div class="player pos-rcb">
+          <div class="name">Piana</div>
+          <div class="role">Obrona</div>
+        </div>
+        <div class="player pos-rb">
+          <div class="name">Zraszacz</div>
+          <div class="role">Obrona</div>
+        </div>
+
+        <!-- Goalkeeper -->
+        <div class="player pos-gk">
+          <div class="name">Gaśnica</div>
+          <div class="role">Bramkarz</div>
+        </div>
+
+      </div>
     </section>
 
     <section id="mecze">
@@ -230,7 +296,7 @@
             <tr><th>Data</th><th>Rywal</th><th>Wynik</th><th>Miejsce</th></tr>
           </thead>
           <tbody>
-            <tr><td>30.10.2025</td><td>BRAK</td><td>0 - 0</td><td>Lelkowo</td></tr>
+            <tr><td>BRAK</td><td>BRAK</td><td>BRAK</td><td>BRAK</td></tr>
           </tbody>
         </table>
       </div>
@@ -269,22 +335,16 @@
   </footer>
 
   <script>
-    // Płynne przewijanie
+    // smooth scroll + mobile menu
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click',e=>{
         const href=a.getAttribute('href');
-        if(href.length>1){
-          e.preventDefault();
-          document.querySelector(href).scrollIntoView({behavior:'smooth'});
-          document.getElementById('nav-links').classList.remove('show');
-        }
+        if(href.length>1){ e.preventDefault(); document.querySelector(href).scrollIntoView({behavior:'smooth'}); document.getElementById('nav-links').classList.remove('show'); }
       });
     });
-
-    // Menu mobilne
     const toggle=document.getElementById('menu-toggle');
     const nav=document.getElementById('nav-links');
-    toggle.addEventListener('click',()=>nav.classList.toggle('show'));
+    if(toggle) toggle.addEventListener('click',()=>nav.classList.toggle('show'));
   </script>
 </body>
 </html>
