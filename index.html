@@ -34,31 +34,28 @@
 
     .card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 6px 18px rgba(10,10,10,0.06);margin-bottom:12px}
 
-    /* --- BOISKO RESPONSYWNE --- */
+    /* --- BOISKO Z LINIAMI --- */
     #druzyna {
       position: relative;
       border-radius: 16px;
+      padding: 60px 20px;
       overflow: hidden;
       color: white;
       text-align: center;
       background: repeating-linear-gradient(
         90deg,
         #2e7d32 0,
-        #2e7d32 6%,
-        #1b5e20 6%,
-        #1b5e20 12%
+        #2e7d32 80px,
+        #1b5e20 80px,
+        #1b5e20 160px
       );
-      aspect-ratio: 2 / 3; /* proporcje boiska */
-      max-width: 100%;
-      margin: 0 auto;
     }
 
-    /* Linie boiska */
     #druzyna::before {
       content: "";
       position: absolute;
-      inset: 2%;
-      border: 3px solid #fff;
+      inset: 0;
+      border: 4px solid #fff;
       border-radius: 10px;
       pointer-events: none;
     }
@@ -67,22 +64,21 @@
       content: "";
       position: absolute;
       top: 50%;
-      left: 2%;
-      width: 96%;
+      left: 0;
+      width: 100%;
       height: 2px;
       background: white;
       transform: translateY(-50%);
       pointer-events: none;
     }
 
-    /* Okrąg środkowy */
     #druzyna .players::before {
       content: "";
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 25%;
-      height: 25%;
+      width: 180px;
+      height: 180px;
       border: 2px solid #fff;
       border-radius: 50%;
       transform: translate(-50%, -50%);
@@ -90,61 +86,39 @@
     }
 
     .players {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      justify-items: center;
+      z-index: 2;
     }
 
     .player {
-      position: absolute;
       background: rgba(255, 255, 255, 0.15);
-      border: 2px solid rgba(255, 255, 255, 0.6);
+      border: 2px solid rgba(255, 255, 255, 0.5);
       border-radius: 50%;
-      width: 10%;
-      aspect-ratio: 1 / 1;
+      width: 100px;
+      height: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-weight: 700;
-      font-size: clamp(10px, 2vw, 16px);
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+      font-size: 16px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     }
-
-    /* Ustawienie 4-4-2 */
-    .bramkarz { top: 90%; left: 50%; transform: translate(-50%, -50%); }
-    .obronca1 { top: 70%; left: 20%; transform: translate(-50%, -50%); }
-    .obronca2 { top: 70%; left: 80%; transform: translate(-50%, -50%); }
-    .obronca3 { top: 75%; left: 40%; transform: translate(-50%, -50%); }
-    .obronca4 { top: 75%; left: 60%; transform: translate(-50%, -50%); }
-    .pomocnik1 { top: 50%; left: 20%; transform: translate(-50%, -50%); }
-    .pomocnik2 { top: 50%; left: 80%; transform: translate(-50%, -50%); }
-    .pomocnik3 { top: 45%; left: 40%; transform: translate(-50%, -50%); }
-    .pomocnik4 { top: 45%; left: 60%; transform: translate(-50%, -50%); }
-    .napastnik1 { top: 20%; left: 40%; transform: translate(-50%, -50%); }
-    .napastnik2 { top: 20%; left: 60%; transform: translate(-50%, -50%); }
 
     table{width:100%;border-collapse:collapse}
     th,td{padding:10px;border-bottom:1px solid #eee;text-align:left;font-size:14px}
     th{background:#fafafa}
 
     .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
-    .gallery div{
-      height:120px;
-      border-radius:8px;
-      background:linear-gradient(135deg,#1b5e20,#2e7d32);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:white;
-      font-weight:bold;
-      font-size:18px;
-    }
+    .gallery div{height:120px;border-radius:8px;background:linear-gradient(135deg,#2e7d32,#1b5e20);display:flex;align-items:center;justify-content:center;color:white;font-weight:bold}
 
     footer{padding:16px 0;text-align:center;color:#666;font-size:14px}
 
-    /* --- MENU MOBILNE --- */
+    /* --- Responsywność --- */
     .menu-toggle {
       display:none;
       flex-direction:column;
@@ -160,7 +134,6 @@
       transition:0.3s;
     }
 
-    /* --- WERSJA MOBILNA --- */
     @media (max-width:900px){
       nav ul {
         display:none;
@@ -200,15 +173,17 @@
         font-size: 15px;
       }
 
+      /* Boisko lekko zwężone na telefonie */
       #druzyna {
         aspect-ratio: auto;
-        height: 80vh;
-        width: 100vw;
-        margin-left: calc(-1 * (100vw - 100%)/2);
-        border-radius: 0;
+        height: 75vh;
+        width: 94vw;
+        margin: 0 auto;
+        border-radius: 8px;
       }
       .player {
         width: 15vw;
+        height: 15vw;
         font-size: 3.5vw;
       }
 
@@ -230,6 +205,7 @@
         flex-direction: column;
       }
     }
+
   </style>
 </head>
 <body>
@@ -282,17 +258,10 @@
     <section id="druzyna">
       <h2 class="section-title">Drużyna</h2>
       <div class="players">
-        <div class="player bramkarz">BRAK</div>
-        <div class="player obronca1">BRAK</div>
-        <div class="player obronca2">BRAK</div>
-        <div class="player obronca3">BRAK</div>
-        <div class="player obronca4">BRAK</div>
-        <div class="player pomocnik1">BRAK</div>
-        <div class="player pomocnik2">BRAK</div>
-        <div class="player pomocnik3">BRAK</div>
-        <div class="player pomocnik4">BRAK</div>
-        <div class="player napastnik1">BRAK</div>
-        <div class="player napastnik2">BRAK</div>
+        <div class="player">BRAK</div>
+        <div class="player">BRAK</div>
+        <div class="player">BRAK</div>
+        <div class="player">BRAK</div>
       </div>
     </section>
 
@@ -304,7 +273,7 @@
             <tr><th>Data</th><th>Rywal</th><th>Wynik</th><th>Miejsce</th></tr>
           </thead>
           <tbody>
-            <tr><td>BRAK</td><td>BRAK</td><td>BRAK</td><td>BRAK</td></tr>
+            <tr><td>30.10.2025</td><td>BRAK</td><td>0 - 0</td><td>Lelkowo</td></tr>
           </tbody>
         </table>
       </div>
