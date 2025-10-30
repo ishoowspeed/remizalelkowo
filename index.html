@@ -34,40 +34,108 @@
 
     .card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 6px 18px rgba(10,10,10,0.06);margin-bottom:12px}
 
-    /* --- BOISKO --- */
-    #druzyna{
-      background:repeating-linear-gradient(
+    /* --- BOISKO Z LINIAMI I POZYCJAMI --- */
+    #druzyna {
+      position: relative;
+      border-radius: 16px;
+      padding: 100px 0;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+      background: repeating-linear-gradient(
         90deg,
         #2e7d32 0,
         #2e7d32 80px,
         #1b5e20 80px,
         #1b5e20 160px
       );
-      color:white;
-      border-radius:16px;
-      padding:40px 20px;
     }
-    #druzyna .section-title{color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.5)}
-    .players{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-      gap:12px;
-      justify-items:center;
+
+    /* Linie boiska */
+    #druzyna::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 4px solid #fff;
+      border-radius: 10px;
+      pointer-events: none;
     }
-    .player{
-      background:rgba(255,255,255,0.1);
-      border:2px solid rgba(255,255,255,0.3);
-      border-radius:50%;
-      width:110px;
-      height:110px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:white;
-      font-weight:bold;
-      font-size:16px;
-      text-shadow:0 2px 6px rgba(0,0,0,0.5);
+
+    #druzyna::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: white;
+      transform: translateY(-50%);
+      pointer-events: none;
     }
+
+    /* Okrąg środkowy */
+    #druzyna .players::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 180px;
+      height: 180px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    /* Pola karne */
+    #druzyna .players::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        linear-gradient(to right, transparent 12%, rgba(255,255,255,0.3) 12%, rgba(255,255,255,0.3) 14%, transparent 14%),
+        linear-gradient(to left, transparent 12%, rgba(255,255,255,0.3) 12%, rgba(255,255,255,0.3) 14%, transparent 14%);
+      background-repeat: no-repeat;
+      pointer-events: none;
+    }
+
+    .players {
+      position: relative;
+      width: 100%;
+      height: 500px;
+    }
+
+    .player {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      width: 90px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Ustawienie 4-4-2 */
+    .bramkarz { top: 90%; left: 50%; transform: translate(-50%, -50%); }
+    .obronca1 { top: 70%; left: 20%; transform: translate(-50%, -50%); }
+    .obronca2 { top: 70%; left: 80%; transform: translate(-50%, -50%); }
+    .obronca3 { top: 75%; left: 40%; transform: translate(-50%, -50%); }
+    .obronca4 { top: 75%; left: 60%; transform: translate(-50%, -50%); }
+    .pomocnik1 { top: 50%; left: 20%; transform: translate(-50%, -50%); }
+    .pomocnik2 { top: 50%; left: 80%; transform: translate(-50%, -50%); }
+    .pomocnik3 { top: 45%; left: 40%; transform: translate(-50%, -50%); }
+    .pomocnik4 { top: 45%; left: 60%; transform: translate(-50%, -50%); }
+    .napastnik1 { top: 20%; left: 40%; transform: translate(-50%, -50%); }
+    .napastnik2 { top: 20%; left: 60%; transform: translate(-50%, -50%); }
 
     table{width:100%;border-collapse:collapse}
     th,td{padding:10px;border-bottom:1px solid #eee;text-align:left;font-size:14px}
@@ -130,6 +198,7 @@
         grid-template-columns:1fr;
       }
     }
+
   </style>
 </head>
 <body>
@@ -182,10 +251,17 @@
     <section id="druzyna">
       <h2 class="section-title">Drużyna</h2>
       <div class="players">
-        <div class="player">BRAK</div>
-        <div class="player">BRAK</div>
-        <div class="player">BRAK</div>
-        <div class="player">BRAK</div>
+        <div class="player bramkarz">BRAK</div>
+        <div class="player obronca1">BRAK</div>
+        <div class="player obronca2">BRAK</div>
+        <div class="player obronca3">BRAK</div>
+        <div class="player obronca4">BRAK</div>
+        <div class="player pomocnik1">BRAK</div>
+        <div class="player pomocnik2">BRAK</div>
+        <div class="player pomocnik3">BRAK</div>
+        <div class="player pomocnik4">BRAK</div>
+        <div class="player napastnik1">BRAK</div>
+        <div class="player napastnik2">BRAK</div>
       </div>
     </section>
 
